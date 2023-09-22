@@ -78,8 +78,15 @@ def update_product_quantity_in_cart(product_id):
 
     # Update the quantity in the Product Service
     update_quantity_in_product_service(product_id, quantity_change)
+    
+    product_info = get_product_info(product_id)
 
-    return jsonify({"message": "Product quantity updated in cart and Product Service"}), 200
+    if product_info:
+        product_name = product_info['name']
+    else:
+        product_name = "Product"
+
+    return jsonify({"message": f"{quantity_change} units of {product_name} updated in cart and Product Service"}), 200
 
 def update_quantity_in_product_service(product_id, quantity_change):
     # Send a request to the Product Service to update the product quantity
