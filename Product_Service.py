@@ -55,7 +55,7 @@ def update_product_quantity(product_id):
             product['quantity'] = new_quantity
             return jsonify({"message": f"Quantity of {product_name} updated to {new_quantity} successfully"}), 200
         else:
-            return jsonify({"error": f"Quantity change would result in a negative quantity for {product_name}"}), 400
+            return jsonify({"error": f"Quantity change results in a negative quantity for {product_name}"}), 400
     return jsonify({"error": "Product not found"}), 404
 
 
