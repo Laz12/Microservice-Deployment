@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-import json
+
 app = Flask(__name__)
 
 # List of grocery items
@@ -12,9 +12,7 @@ products = [
 # Endpoint 1: Retrieve list of grocery products, including their names, prices, and quantity in stock
 @app.route('/products', methods=['GET'])
 def get_products():
-    response = jsonify({"products": products})
-    response.headers.add("Content-Type", "application/json")  # Set response content type
-    return response
+    return jsonify({"products": products})
 
 
 # Endpoint 2: Get details about a specific product by its unique ID
