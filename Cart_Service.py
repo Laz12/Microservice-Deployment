@@ -1,11 +1,10 @@
 from flask import Flask, jsonify, request
 import requests
-import os
 
 app = Flask(__name__)
 
 # URL of the Product Service
-PRODUCT_SERVICE_URL = 'https://product-service-58wv.onrender.com:5000'  # Replace with the actual URL
+PRODUCT_SERVICE_URL = 'http://localhost:5000' 
 
 # Sample user cart data (you can use a database in a real application)
 user_carts = {
@@ -66,7 +65,7 @@ def get_product_info(product_id):
         return response.json()
     return None
 
-
+# Update the quantity of a product in the cart
 @app.route('/cart/update_product_quantity/<int:product_id>', methods=['PATCH'])
 def update_product_quantity_in_cart(product_id):
     data = request.get_json()
