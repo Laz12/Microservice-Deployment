@@ -42,6 +42,7 @@ def add_product():
 @app.route('/products/update_quantity/<int:product_id>', methods=['PATCH'])
 def update_product_quantity(product_id):
     data = request.get_json()
+    print("this is the:", data)
     quantity_change = data.get('quantity_change', 0)
 
     product = next((p for p in products if p['id'] == product_id), None)
