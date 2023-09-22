@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, request
-
+import json
 app = Flask(__name__)
 
 # List of grocery items
