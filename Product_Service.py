@@ -51,7 +51,7 @@ def update_product_quantity(product_id):
         product_name = product['name']
         current_quantity = product['quantity']
 
-        new_quantity = current_quantity + quantity_change
+        new_quantity = current_quantity - quantity_change
         if new_quantity >= 0:
             product['quantity'] = new_quantity
             return jsonify({"message": f"Quantity of {product_name} updated to {new_quantity} successfully"}), 200
