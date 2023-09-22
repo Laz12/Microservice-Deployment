@@ -24,7 +24,7 @@ def get_product(product_id):
     return jsonify({"error": "Product not found"}), 404
 
 
-# Endpoint 3: Adding new grocery products to the inventory
+# Endpoint 3: Add new grocery products to the inventory
 @app.route('/products', methods=['POST'])
 def add_product():
     data = request.get_json()
@@ -39,6 +39,7 @@ def add_product():
         return jsonify(product), 201
     return jsonify({"error": "Invalid product data"}), 400
 
+# Endpoint 4: Update quantity of the product
 @app.route('/products/update_quantity/<int:product_id>', methods=['PATCH'])
 def update_product_quantity(product_id):
     data = request.get_json()
