@@ -47,12 +47,15 @@ def update_product_quantity(product_id):
 
     product = next((p for p in products if p['id'] == product_id), None)
     if product:
-        # Ensure that the quantity change doesn't result in a negative quantity
-        if product['quantity'] + quantity_change >= 0:
-            product['quantity'] += quantity_change
-            return jsonify({"message": "Product quantity updated successfully"}), 200
+        product_name = product['name']
+        current_quantity = product['quantity']
+
+        new_quantity = current_quantity + quantity_change
+        if new_quantity >= 0:
+            product['quantity'] = new_quantity
+            return jsonify({"message": f"Quantity of {product_name} updated to {new_quantity} successfully"}), 200
         else:
-            return jsonify({"error": "Quantity change would result in a negative quantity"}), 400
+            return jsonify({"error": f"Quantity change would result in a negative quantity for {product_name}"}), 400
     return jsonify({"error": "Product not found"}), 404
 
 
