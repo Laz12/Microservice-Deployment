@@ -99,7 +99,7 @@ def update_quantity_in_product_service(product_id, quantity_change):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=8000)
+    app.run(debug=True)
 
 
 
