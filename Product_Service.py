@@ -12,7 +12,9 @@ products = [
 # Endpoint 1: Retrieve list of grocery products, including their names, prices, and quantity in stock
 @app.route('/products', methods=['GET'])
 def get_products():
-    return jsonify({"products": products})
+    response = jsonify({"products": products})
+    response.headers.add("Content-Type", "application/json")  # Set response content type
+    return response
 
 
 # Endpoint 2: Get details about a specific product by its unique ID
