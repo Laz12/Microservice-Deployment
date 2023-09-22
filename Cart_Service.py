@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 # URL of the Product Service
-PRODUCT_SERVICE_URL = 'https://product-service-58wv.onrender.com:5000' 
+PRODUCT_SERVICE_URL = 'https://product-service-58wv.onrender.com' 
 
 # Sample user cart data (you can use a database in a real application)
 user_carts = {
