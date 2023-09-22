@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 # URL of the Product Service
-PRODUCT_SERVICE_URL = 'https://cart-service-ikbg.onrender.com'  # Replace with the actual URL
+PRODUCT_SERVICE_URL = 'https://product-service-58wv.onrender.com:443'  # Replace with the actual URL
 
 # Sample user cart data (you can use a database in a real application)
 user_carts = {
