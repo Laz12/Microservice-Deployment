@@ -47,4 +47,4 @@ curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' <C
 curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' https://cart-service-ikbg.onrender.com/cart/update_product_quantity/1
 ```
 
-#### 2. Do the same as above for the Product Service as it follows the same concept
+### Do the same as above for the Product Service as it follows the same concept
