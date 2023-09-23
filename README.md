@@ -19,6 +19,10 @@ This guide will walk you through deploying two Flask services on Render and test
 
 You can use `cURL` to test the endpoints of both services. Replace the placeholders in the cURL commands with actual values.
 
+### Cart and Product Services URL
+- https://cart-service-ikbg.onrender.com
+- https://product-service-58wv.onrender.com
+
 ### Cart Service Endpoints
 
 #### 1. Retrieve the Cart Contents (GET)
