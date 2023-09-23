@@ -46,6 +46,7 @@ def update_product_quantity(product_id):
     quantity_change = data.get('quantity_change', 0)
 
     product = next((p for p in products if p['id'] == product_id), None)
+    
     if product:
         product_name = product['name']
         current_quantity = product['quantity']
