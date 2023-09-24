@@ -54,22 +54,23 @@ curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' ht
 - Retrieve list of grocery products, including their names, prices, and quantity in stock
 ```bash
 curl <Product_Service_URL>/products
-curl https://your-product-service-url.com/products
+curl https://product-service-58wv.onrender.com/products
 ```
 
 - Get details about a specific product by its unique ID
 ```bash
 curl <Product_Service_URL>/products/<product_id>
-curl https://your-product-service-url.com/products/3
+curl https://product-service-58wv.onrender.com/products/3
 ```
 - Add new grocery products to the inventory
 ```bash
 curl -X POST -H "Content-Type: application/json" -d '{"name": "New Product", "price": 5.0, "quantity": 10}' <Product_Service_URL>/products
-curl -X POST -H "Content-Type: application/json" -d '{"name": "New Product", "price": 5.0, "quantity": 10}' https://your-product-service-url.com/products
+curl -X POST -H "Content-Type: application/json" -d '{"name": "New Product", "price": 5.0, "quantity": 10}' https://product-service-58wv.onrender.com/products
 ```
 
 - Update quantity of the product
+- Use a "negative number" to increment the quantity, and a "positive to decrement" the quantity
 ```bash
 curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' <Product_Service_URL>/products/update_quantity/<product_id>
-curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' https://your-product-service-url.com/products/update_quantity/3
+curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' https://product-service-58wv.onrender.com/products/update_quantity/3
 ```
