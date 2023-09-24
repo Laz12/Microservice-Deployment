@@ -1,3 +1,18 @@
+# Cart and Product Services URL
+- https://cart-service-ikbg.onrender.com
+- https://product-service-58wv.onrender.com
+
+
+# Execute Bash Script for Automated API Testing with Curl Commands
+## To test different values for the endpoints, simply edit the relevant variables or parameters in the script to match your test cases.
+```bash
+./curl.sh
+```
+## Credentials 
+Student: Lazaro Camero Ruiz
+Course: CMSC 455 - Software as a Service
+
+
 # Deploying Flask Services on Render and Testing with cURL
 
 This guide will walk you through deploying two Flask services on Render and testing the endpoints using `curl`. The services include a Cart Service and a Product Service.
@@ -18,10 +33,6 @@ This guide will walk you through deploying two Flask services on Render and test
 ## Testing Endpoints with cURL
 
 You can use `cURL` to test the endpoints of both services. Replace the placeholders in the cURL commands with actual values.
-
-### Cart and Product Services URL
-- https://cart-service-ikbg.onrender.com
-- https://product-service-58wv.onrender.com
 
 ### Cart Service Endpoints
 

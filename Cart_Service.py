@@ -65,7 +65,7 @@ def get_product_info(product_id):
         return response.json()
     return None
 
-# Update the quantity of a product in the cart
+# Endpoint 4: Update the quantity of a product in the cart
 @app.route('/cart/update_product_quantity/<int:product_id>', methods=['PATCH'])
 def update_product_quantity_in_cart(product_id):
     data = request.get_json()
@@ -74,7 +74,14 @@ def update_product_quantity_in_cart(product_id):
     # Update the quantity in the cart locally
     for user_id, cart in user_carts.items():
         if product_id in cart:
-            cart[product_id] = max(cart[product_id] + quantity_change, 0)
+            current_quantity = cart[product_id]
+            new_quantity = current_quantity + quantity_change
+
+            # Check if new_quantity is within acceptable bounds (e.g., >= 0)
+            if new_quantity >= 0:
+                cart[product_id] = new_quantity
+            else:
+                return jsonify({"error": "Quantity change results in a negative quantity in the cart"}), 400
 
     # Update the quantity in the Product Service
     update_quantity_in_product_service(product_id, quantity_change)
@@ -86,7 +93,7 @@ def update_product_quantity_in_cart(product_id):
     else:
         product_name = "Product"
 
-    return jsonify({"message": f"{quantity_change} units of {product_name} updated in cart and Product Service"}), 200
+    return jsonify({"message": f"{quantity_change} units of {product_name} updated in Cart and Product Service"}), 200
 
 def update_quantity_in_product_service(product_id, quantity_change):
     # Send a request to the Product Service to update the product quantity
