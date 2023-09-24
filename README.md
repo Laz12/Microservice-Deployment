@@ -25,8 +25,6 @@ You can use `cURL` to test the endpoints of both services. Replace the placehold
 
 ### Cart Service Endpoints
 
-#### 1. Retrieve the Cart Contents (GET)
-
 - Retrieve current contents of a user’s shopping cart
 ```bash
 curl <Cart_Service_URL>/cart/<user_id>
@@ -51,4 +49,27 @@ curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' <C
 curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' https://cart-service-ikbg.onrender.com/cart/update_product_quantity/1
 ```
 
-### Do the same as above for the Product Service as it follows the same concept
+### Product Service Endpoints
+
+- Retrieve list of grocery products, including their names, prices, and quantity in stock
+```bash
+curl <Product_Service_URL>/products
+curl https://your-product-service-url.com/products
+```
+
+- Get details about a specific product by its unique ID
+```bash
+curl <Product_Service_URL>/products/<product_id>
+curl https://your-product-service-url.com/products/3
+```
+- Add new grocery products to the inventory
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"name": "New Product", "price": 5.0, "quantity": 10}' <Product_Service_URL>/products
+curl -X POST -H "Content-Type: application/json" -d '{"name": "New Product", "price": 5.0, "quantity": 10}' https://your-product-service-url.com/products
+```
+
+- Update quantity of the product
+```bash
+curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' <Product_Service_URL>/products/update_quantity/<product_id>
+curl -X PATCH -H "Content-Type: application/json" -d '{"quantity_change": 5}' https://your-product-service-url.com/products/update_quantity/3
+```
