@@ -58,7 +58,7 @@ def remove_from_cart(user_id, product_id):
         if user_cart[product_id] == 0:
             del user_cart[product_id]
 
-    return jsonify({"message": f"{quantity} {product_info['name']} has been removed from cart"}), 200
+    return jsonify({"message": f"{quantity} {product_info['name']} have been removed from cart"}), 200
 
 def get_product_info(product_id):
     response = requests.get(f"{PRODUCT_SERVICE_URL}/products/{product_id}")
