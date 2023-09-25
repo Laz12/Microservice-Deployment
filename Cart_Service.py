@@ -104,7 +104,6 @@ def update_quantity_in_product_service(product_id, quantity_change):
         return jsonify({"error": "Failed to update product quantity in Product Service"}), 500
 
 
-
 if __name__ == '__main__':
     app.run(debug=True, port=8000)
 
