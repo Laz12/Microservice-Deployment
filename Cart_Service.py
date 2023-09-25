@@ -49,7 +49,7 @@ def remove_from_cart(user_id, product_id):
 
     product_info = get_product_info(product_id)
     if not product_info:
-        return jsonify({"error": "Product not found"}), 404
+        return jsonify({"error": "The product you tried to remove is not found"}), 404
 
     user_cart = user_carts.get(user_id, {})
     if product_id in user_cart:
@@ -57,7 +57,7 @@ def remove_from_cart(user_id, product_id):
         if user_cart[product_id] == 0:
             del user_cart[product_id]
 
-    return jsonify({"message": f"{quantity} {product_info['name']} removed from cart"}), 200
+    return jsonify({"message": f"{quantity} {product_info['name']} has been removed from cart"}), 200
 
 def get_product_info(product_id):
     response = requests.get(f"{PRODUCT_SERVICE_URL}/products/{product_id}")
@@ -72,7 +72,7 @@ def update_product_quantity_in_cart(product_id):
     quantity_change = data.get('quantity_change', 0)
 
     # Update the quantity in the cart locally
-    for user_id, cart in user_carts.items():
+    for id, cart in user_carts.items():
         if product_id in cart:
             current_quantity = cart[product_id]
             new_quantity = current_quantity + quantity_change

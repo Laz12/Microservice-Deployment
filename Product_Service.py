@@ -18,9 +18,16 @@ def get_products():
 # Endpoint 2: Get details about a specific product by its unique ID
 @app.route('/products/<int:product_id>', methods=['GET'])
 def get_product(product_id):
-    product = next((p for p in products if p['id'] == product_id), None)
+    product = None
+    
+    for item in products:
+        if item['id'] == product_id:
+            product = item
+            break
+
     if product:
         return jsonify(product)
+    
     return jsonify({"error": "Product not found"}), 404
 
 
@@ -28,6 +35,7 @@ def get_product(product_id):
 @app.route('/products', methods=['POST'])
 def add_product():
     data = request.get_json()
+    
     if 'name' in data and 'price' in data and 'quantity' in data:
         product = {
             "id": len(products) + 1,
@@ -36,6 +44,7 @@ def add_product():
             "quantity": data['quantity']
         }
         products.append(product)
+        
         return jsonify(product), 201
     return jsonify({"error": "Invalid product data"}), 400
 
@@ -45,7 +54,12 @@ def update_product_quantity(product_id):
     data = request.get_json()
     quantity_change = data.get('quantity_change', 0)
 
-    product = next((p for p in products if p['id'] == product_id), None)
+    product = None
+    
+    for product_item in products:
+        if product_item['id'] == product_id:
+            product = product_item
+            break
     
     if product:
         product_name = product['name']
@@ -58,6 +72,7 @@ def update_product_quantity(product_id):
             return jsonify({"message": f"Quantity of {product_name} updated to {new_quantity} successfully"}), 200
         else:
             return jsonify({"error": f"Quantity change results in a negative quantity for {product_name}"}), 400
+        
     return jsonify({"error": "Product not found"}), 404
 
 
