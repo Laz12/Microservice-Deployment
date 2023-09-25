@@ -35,12 +35,12 @@ def add_to_cart(user_id, product_id):
 
     product_info = get_product_info(product_id)
     if not product_info:
-        return jsonify({"error": "Product not found"}), 404
+        return jsonify({"error": "The product you're looking for was not found"}), 404
 
     user_cart = user_carts.setdefault(user_id, {})
     user_cart[product_id] = user_cart.get(product_id, 0) + quantity
     
-    return jsonify({"message": f"{quantity} {product_info['name']} added to cart"}), 201
+    return jsonify({"message": f"{quantity} {product_info['name']} were added to cart"}), 201
 
 # Endpoint 3: Remove a specified quantity of a product from the user’s cart
 @app.route('/cart/<int:user_id>/remove/<int:product_id>', methods=['POST'])
@@ -49,11 +49,12 @@ def remove_from_cart(user_id, product_id):
 
     product_info = get_product_info(product_id)
     if not product_info:
-        return jsonify({"error": "The product you tried to remove is not found"}), 404
+        return jsonify({"error": "The product you tried to remove was not found"}), 404
 
     user_cart = user_carts.get(user_id, {})
     if product_id in user_cart:
         user_cart[product_id] = max(user_cart[product_id] - quantity, 0)
+        
         if user_cart[product_id] == 0:
             del user_cart[product_id]
 
@@ -71,21 +72,20 @@ def update_product_quantity_in_cart(product_id):
     data = request.get_json()
     quantity_change = data.get('quantity_change', 0)
 
-    # Update the quantity in the cart locally
-    for id, cart in user_carts.items():
+    # Update the quantity in the shopping cart
+    for _, cart in user_carts.items():
         if product_id in cart:
             current_quantity = cart[product_id]
             new_quantity = current_quantity + quantity_change
 
-            # Check if new_quantity is within acceptable bounds (e.g., >= 0)
+            # Check if new_quantity is within acceptable bounds
             if new_quantity >= 0:
                 cart[product_id] = new_quantity
             else:
                 return jsonify({"error": "Quantity change results in a negative quantity in the cart"}), 400
 
-    # Update the quantity in the Product Service
+    # Update the product's quantity in the Product Service
     update_quantity_in_product_service(product_id, quantity_change)
-    
     product_info = get_product_info(product_id)
 
     if product_info:
